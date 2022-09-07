@@ -5,8 +5,7 @@ const faker = require('faker')
 
 console.log(faker.company.companyName())
 
-app.use('/src', express.static(path.join(__dirname, '/src')))
-app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')))
+app.use('/dist', express.static(path.join(__dirname, '/dist')))
 
 
 app.get('/', (req, res, next)=>{
