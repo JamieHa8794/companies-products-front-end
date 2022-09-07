@@ -1,19 +1,11 @@
 const express = require('express');
 const app = express();
+const path = require('path')
+
 
 app.get('/', (req, res, next)=>{
     try{
-        res.send(`
-            <html>
-                <head>
-                </head>
-                <body>
-                    <h1>
-                        Hello World
-                    </h1>
-                </body>
-            </html>
-        `)
+        res.sendFile(path.join(__dirname,'index.html'));
     }
     catch(err){
         next(err)
