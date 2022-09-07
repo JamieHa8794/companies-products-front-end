@@ -1,6 +1,12 @@
 const express = require('express');
 const app = express();
 const path = require('path')
+const faker = require('faker')
+
+console.log(faker.company.companyName())
+
+app.use('/src', express.static(path.join(__dirname, '/src')))
+app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')))
 
 
 app.get('/', (req, res, next)=>{
