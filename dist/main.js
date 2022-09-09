@@ -15029,13 +15029,33 @@ eval("/*\n\nCopyright (c) 2012-2014 Jeffrey Mealo\n\nPermission is hereby grante
 
 /***/ }),
 
+/***/ "./src/data.js":
+/*!*********************!*\
+  !*** ./src/data.js ***!
+  \*********************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("const faker = __webpack_require__(/*! faker */ \"./node_modules/faker/index.js\")\n\nconst companies = new Array(50).fill('').map(_ =>{\n    return(faker.company.companyName())\n})\n\nconst productMap = companies.reduce((acc, company)=>{\n    acc[company] = new Array(3 + faker.datatype.number(5)).fill('-').map(_ =>{\n        return(faker.commerce.productName())\n    })\n    return acc;\n},{})\n\n\nmodule.exports = {\n    companies, \n    productMap\n}\n\n//# sourceURL=webpack://companies-products-front-end/./src/data.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const faker = __webpack_require__(/*! faker */ \"./node_modules/faker/index.js\")\n\nconst companies = new Array(50).fill('').map(_ =>{\n    return(faker.company.companyName())\n})\n\nconst productMap = companies.reduce((acc, company)=>{\n    acc[company] = new Array(3 + faker.datatype.number(3)).fill('-').map(_ =>{\n        return(faker.commerce.productName())\n    })\n    return acc;\n},{})\n\n\nlet curr = window.location.hash.slice(1)*1;\n\n\n\n\n\nconst companyList = document.querySelector('#company-List')\n\nconst render = () =>{\n    const html = `\n        ${companies.map((company, idx) =>`\n            <li>\n                <a href='#${idx}'>\n                    ${company}\n                </a>\n                ${curr === idx ? \n                `\n                    <ul>\n                        ${productMap[company].map(product =>{\n                            return(`\n                                <li>\n                                    ${product}\n                                </li>\n                            `)\n                        }).join('')}\n                    </ul>\n                ` : \n                ''\n                }\n\n            </li>\n        `).join('')}\n    `\n    companyList.innerHTML = html\n}\n\n\nrender();\n\nwindow.addEventListener('hashchange', ()=>{\n    curr = window.location.hash.slice(1)*1;\n    render();\n})\n\n//# sourceURL=webpack://companies-products-front-end/./src/index.js?");
+eval("const {companies, productMap} = __webpack_require__(/*! ./data */ \"./src/data.js\")\nconst render = __webpack_require__(/*! ./render */ \"./src/render.js\")\nconst companyList = document.querySelector('#company-List')\n\nlet curr = window.location.hash.slice(1)*1;\n\nconst _render = () =>{\n    render({companyList, companies, productMap, curr});\n}\n\n_render();\n\nwindow.addEventListener('hashchange', ()=>{\n    curr = window.location.hash.slice(1)*1;\n    _render();\n})\n\n//# sourceURL=webpack://companies-products-front-end/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/render.js":
+/*!***********************!*\
+  !*** ./src/render.js ***!
+  \***********************/
+/***/ ((module) => {
+
+eval("\nconst render = ({companyList, companies, productMap, curr}) =>{\n    const html = `\n        ${companies.map((company, idx) =>`\n            <li>\n                <a href='#${idx}'>\n                    ${company}\n                </a>\n                ${curr === idx ? \n                `\n                    <ul>\n                        ${productMap[company].map(product =>{\n                            return(`\n                                <li>\n                                    ${product}\n                                </li>\n                            `)\n                        }).join('')}\n                    </ul>\n                ` : \n                ''\n                }\n\n            </li>\n        `).join('')}\n    `\n    companyList.innerHTML = html\n}\n\nmodule.exports = render;\n\n//# sourceURL=webpack://companies-products-front-end/./src/render.js?");
 
 /***/ })
 
