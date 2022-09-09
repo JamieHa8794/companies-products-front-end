@@ -14,3 +14,4 @@ window.addEventListener('hashchange', ()=>{
     curr = window.location.hash.slice(1)*1;
     _render();
 })
+
