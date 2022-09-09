@@ -2,8 +2,18 @@ body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 ul{
-    padding-left: 10px;
+    margin-left: 10px;
+    padding-left: 0px;
+    text-align: left;
 }
 li{
     list-style: none;
+    padding-bottom: 10px;
+}
+li > ul {
+    padding-left: 30px;
+}
+li > ul > li {
+    list-style: lower-roman;
+    padding-bottom: 0px;
 }
