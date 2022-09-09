@@ -17,3 +17,6 @@ li > ul > li {
     list-style: lower-roman;
     padding-bottom: 0px;
 }
+a{
+    color: black;
+}

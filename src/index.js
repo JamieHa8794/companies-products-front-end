@@ -5,31 +5,43 @@ const companies = new Array(50).fill('').map(_ =>{
 })
 
 const productMap = companies.reduce((acc, company)=>{
-    acc[company] = new Array(1 + faker.random.number(2)).fill('-').map(_ =>{
+    acc[company] = new Array(3 + faker.datatype.number(3)).fill('-').map(_ =>{
         return(faker.commerce.productName())
     })
     return acc;
 },{})
 
-console.log(productMap)
+
+let curr = window.location.hash.slice(1)*1;
+
+
+
 
 
 const companyList = document.querySelector('#company-List')
 
 const render = () =>{
     const html = `
-        ${companies.map(company =>`
+        ${companies.map((company, idx) =>`
             <li>
-                ${company}
-                <ul>
-                    ${productMap[company].map(product =>{
-                        return(`
-                            <li>
-                                ${product}
-                            </li>
-                        `)
-                    }).join('')}
-                </ul>
+                <a href='#${idx}'>
+                    ${company}
+                </a>
+                ${curr === idx ? 
+                `
+                    <ul>
+                        ${productMap[company].map(product =>{
+                            return(`
+                                <li>
+                                    ${product}
+                                </li>
+                            `)
+                        }).join('')}
+                    </ul>
+                ` : 
+                ''
+                }
+
             </li>
         `).join('')}
     `
@@ -38,3 +50,8 @@ const render = () =>{
 
 
 render();
+
+window.addEventListener('hashchange', ()=>{
+    curr = window.location.hash.slice(1)*1;
+    render();
+})
