@@ -1,8 +1,22 @@
 const faker = require('faker')
 
-console.log(faker.company.companyName())
-console.log(faker.commerce.productName())
-console.log(faker.commerce.productName())
+const companies = new Array(50).fill('').map(_ =>{
+    return(faker.company.companyName())
+})
+
 
 const companyList = document.querySelector('#company-List')
-console.log(companyList)
+
+const render = () =>{
+    const html = `
+        ${companies.map(company =>`
+            <li>
+                ${company}
+            </li>
+        `).join('')}
+    `
+    companyList.innerHTML = html
+}
+
+
+render();

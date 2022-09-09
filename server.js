@@ -1,12 +1,9 @@
 const express = require('express');
 const app = express();
 const path = require('path')
-const faker = require('faker')
 
-console.log(faker.company.companyName())
 
 app.use('/dist', express.static(path.join(__dirname, '/dist')))
-
 
 app.get('/', (req, res, next)=>{
     try{
