@@ -15035,7 +15035,7 @@ eval("/*\n\nCopyright (c) 2012-2014 Jeffrey Mealo\n\nPermission is hereby grante
   \**********************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const faker = __webpack_require__(/*! faker */ \"./node_modules/faker/index.js\")\n\nconsole.log(faker.company.companyName())\nconsole.log(faker.commerce.productName())\nconsole.log(faker.commerce.productName())\n\n\n//# sourceURL=webpack://companies-products-front-end/./src/index.js?");
+eval("const faker = __webpack_require__(/*! faker */ \"./node_modules/faker/index.js\")\n\nconsole.log(faker.company.companyName())\nconsole.log(faker.commerce.productName())\nconsole.log(faker.commerce.productName())\n\nconst companyList = document.querySelector('#company-List')\nconsole.log(companyList)\n\n//# sourceURL=webpack://companies-products-front-end/./src/index.js?");
 
 /***/ })
 
